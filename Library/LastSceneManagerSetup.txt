@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Sunnyland/Scenes/demo.unity
+- path: Assets/TestScene2/TestScene2.unity
   isLoaded: 1
   isActive: 1
