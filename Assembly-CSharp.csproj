@@ -59,7 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Test Scene\CharacterController2D.cs" />
     <Compile Include="Assets\Test Scene\Player_Move_Test.cs" />
     <None Include="Assets\gothicvania patreon collection\gothicvania patreon collection\public-license.txt" />
     <Reference Include="UnityEditor.StandardEvents">

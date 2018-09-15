@@ -54,6 +54,12 @@ public class Player_Move_Test : MonoBehaviour {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
     }
 
+
+    void Dash() {
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+
+    }
+
     void FlipPlayer()
     {
         facingRight = !facingRight;
