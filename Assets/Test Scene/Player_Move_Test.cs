@@ -7,11 +7,21 @@ public class Player_Move_Test : MonoBehaviour {
     public int PlayerSpeed = 10;
     private bool facingRight = false;
     public int playerJumpPower = 1250;
-
     private float MoveX;
 
-	// Use this for initialization
-	void Start () {
+    public Vector2 DashForce;
+
+    public DashState dashState;
+    public float dashTimer;
+    public float maxDash = 20f;
+
+    public Vector2 savedVelocity; 
+
+
+    
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -19,9 +29,9 @@ public class Player_Move_Test : MonoBehaviour {
 	void Update () {
 
         PlayerMove ();
+        Dash();
 
-		
-	}
+    }
 
     void PlayerMove()
     {
@@ -34,10 +44,10 @@ public class Player_Move_Test : MonoBehaviour {
         //animation
 
         //player direction
-        if (MoveX < 0.0f && facingRight == false) {
+        if (MoveX > 0.0f && facingRight == false) {
             FlipPlayer();
         }
-        else if (MoveX > 0.0f && facingRight == true) {
+        else if (MoveX < 0.0f && facingRight == true) {
             FlipPlayer();
         }
 
@@ -45,8 +55,15 @@ public class Player_Move_Test : MonoBehaviour {
 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(MoveX * PlayerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
+        
     }
 
+    public enum DashState
+    {
+        Ready,
+        Dashing,
+        Cooldown
+    }
 
     void Jump() {
 
@@ -55,8 +72,38 @@ public class Player_Move_Test : MonoBehaviour {
     }
 
 
-    void Dash() {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+   public void Dash() {
+        switch (dashState)
+        {
+            case DashState.Ready:
+                var isDashKeyDown = Input.GetKeyDown(KeyCode.Z);
+                if (isDashKeyDown)
+                {
+                    savedVelocity = DashForce;
+
+                    dashState = DashState.Dashing;
+                }
+                break;
+            case DashState.Dashing:
+                dashTimer += Time.deltaTime * 300;
+                if (dashTimer >= maxDash)
+                {
+                    dashTimer = maxDash;
+                    if (facingRight)
+                        GetComponent<Rigidbody2D>().AddForce(Vector2.right * savedVelocity);
+                    if (!facingRight)
+                        GetComponent<Rigidbody2D>().AddForce(Vector2.left * savedVelocity); dashState = DashState.Cooldown;
+                }
+                break;
+            case DashState.Cooldown:
+                dashTimer -= Time.deltaTime*10;
+                if (dashTimer <= 0)
+                {
+                    dashTimer = 0;
+                    dashState = DashState.Ready;
+                }
+                break;
+        }
 
     }
 
