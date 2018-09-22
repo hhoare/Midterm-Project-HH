@@ -1,0 +1,2 @@
+Created a tiny unity prototype for a game. Playable in scene called "TestScene". Arrow keys to move, space to jump, Z to dash. Aesthetic can be described as horror themed pixel art. Mechanics are solely moving through the levels. Enemy are defeated by dashing through them. Different enemies need to be dashed at from different sides so some strategy is required. The game will be made using Unity and C# programming. 
+Story: Your character is out to avenge your family and village, which was destroyed by demons. You have followed the demons back to a town they have taken over. 

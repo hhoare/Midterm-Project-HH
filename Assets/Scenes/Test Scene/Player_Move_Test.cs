@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player_Move_Test : MonoBehaviour {
 
+    public Animator animator;
+
+
     public int PlayerSpeed = 10;
-    private bool facingRight = false;
+    private bool facingRight = true;
     public int playerJumpPower = 1250;
     private float MoveX;
 
@@ -35,6 +38,8 @@ public class Player_Move_Test : MonoBehaviour {
 
     void PlayerMove()
     {
+        animator.SetFloat("Speed", Mathf.Abs(MoveX));
+
         //controls
         MoveX = Input.GetAxis("Horizontal");
         if (Input.GetButtonDown("Jump")) {
