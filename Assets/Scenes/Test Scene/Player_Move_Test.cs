@@ -21,6 +21,11 @@ public class Player_Move_Test : MonoBehaviour {
     public Vector2 savedVelocity; 
 
 
+    private bool IsDashing
+    {
+        get { return dashState == DashState.Dashing; }
+    }
+
     
 
     // Use this for initialization
@@ -36,9 +41,16 @@ public class Player_Move_Test : MonoBehaviour {
 
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     void PlayerMove()
     {
         animator.SetFloat("Speed", Mathf.Abs(MoveX));
+        animator.SetBool("Dashing", IsDashing);
+
 
         //controls
         MoveX = Input.GetAxis("Horizontal");
@@ -78,6 +90,7 @@ public class Player_Move_Test : MonoBehaviour {
 
 
    public void Dash() {
+
         switch (dashState)
         {
             case DashState.Ready:
@@ -97,7 +110,8 @@ public class Player_Move_Test : MonoBehaviour {
                     if (facingRight)
                         GetComponent<Rigidbody2D>().AddForce(Vector2.right * savedVelocity);
                     if (!facingRight)
-                        GetComponent<Rigidbody2D>().AddForce(Vector2.left * savedVelocity); dashState = DashState.Cooldown;
+                        GetComponent<Rigidbody2D>().AddForce(Vector2.left * savedVelocity);
+                    dashState = DashState.Cooldown;
                 }
                 break;
             case DashState.Cooldown:
