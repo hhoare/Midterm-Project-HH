@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 00de0899cb0f5a640a4e9a364af81b70
+timeCreated: 1514985620
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Atlaschicken_0
+    21300002: Atlaschicken_1
+    21300004: Atlaschicken_2
+    21300006: Atlaschicken_3
+    21300008: Atlaschicken_4
+    21300010: Atlaschicken_5
+    21300012: Atlaschicken_6
+    21300014: Atlaschicken_7
+    21300016: Atlaschicken_8
+    21300018: Atlaschicken_9
+    21300020: Atlaschicken_10
+    21300022: Atlaschicken_11
+    21300024: Atlaschicken_12
+    21300026: Atlaschicken_13
+    21300028: Atlaschicken_14
+    21300030: Atlaschicken_15
+    21300032: Atlaschicken1_0
+    21300034: Atlaschicken1_1
+    21300036: Atlaschicken1_2
+    21300038: Atlaschicken1_3
+    21300040: Atlaschicken1_4
+    21300042: Atlaschicken1_5
+    21300044: Atlaschicken1_6
+    21300046: Atlaschicken1_7
+    21300048: Atlaschicken1_8
+    21300050: Atlaschicken1_9
+    21300052: Atlaschicken1_10
+    21300054: Atlaschicken1_11
+    21300056: Atlaschicken1_12
+    21300058: Atlaschicken1_13
+    21300060: Atlaschicken1_14
+    21300062: AtlasDuck_0
+    21300064: AtlasDuck_1
+    21300066: AtlasDuck_2
+    21300068: AtlasDuck_3
+    21300070: AtlasDuck_4
+    21300072: AtlasDuck_5
+    21300074: AtlasDuck_6
+    21300076: AtlasDuck_7
+    21300078: AtlasDuck_8
+    21300080: AtlasDuck_9
+    21300082: AtlasDuck_10
+    21300084: AtlasDuck_11
+    21300086: AtlasDuck_12
+    21300088: AtlasDuck_13
+    21300090: AtlasDuck_14
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 2
+    aniso: 4
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AtlasDuck_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 919
+        width: 117
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_1
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 919
+        width: 67
+        height: 68
+      alignment: 9
+      pivot: {x: 0.3089374, y: 0.5412436}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_2
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 963
+        width: 86
+        height: 52
+      alignment: 9
+      pivot: {x: 0.78433585, y: 0.25104582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 835
+        width: 188
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_4
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 835
+        width: 101
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 351
+        width: 299
+        height: 483
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 623
+        width: 113
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 543
+        width: 95
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_8
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 543
+        width: 74
+        height: 33
+      alignment: 9
+      pivot: {x: 0.4222478, y: 0.76153195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_9
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 352
+        width: 191
+        height: 191
+      alignment: 9
+      pivot: {x: 0.41715965, y: 0.39456767}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 430
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_11
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 0
+        width: 339
+        height: 319
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_12
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 294
+        width: 142
+        height: 51
+      alignment: 9
+      pivot: {x: 0.55064803, y: 0.5000012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_13
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 168
+        width: 190
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasDuck_14
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 0
+        width: 241
+        height: 167
+      alignment: 9
+      pivot: {x: 0.3030403, y: 0.5430659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

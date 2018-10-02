@@ -1,0 +1,348 @@
+fileFormatVersion: 2
+guid: e78ec0e7a11923a418d3f00d28f86edd
+timeCreated: 1515086132
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Atlaschicken_0
+    21300002: Atlaschicken_1
+    21300004: Atlaschicken_2
+    21300006: Atlaschicken_3
+    21300008: Atlaschicken_4
+    21300010: Atlaschicken_5
+    21300012: Atlaschicken_6
+    21300014: Atlaschicken_7
+    21300016: Atlaschicken_8
+    21300018: Atlaschicken_9
+    21300020: Atlaschicken_10
+    21300022: Atlaschicken_11
+    21300024: Atlaschicken_12
+    21300026: Atlaschicken_13
+    21300028: Atlaschicken_14
+    21300030: Atlaschicken_15
+    21300032: Atlaschicken1_0
+    21300034: Atlaschicken1_1
+    21300036: Atlaschicken1_2
+    21300038: Atlaschicken1_3
+    21300040: Atlaschicken1_4
+    21300042: Atlaschicken1_5
+    21300044: Atlaschicken1_6
+    21300046: Atlaschicken1_7
+    21300048: Atlaschicken1_8
+    21300050: Atlaschicken1_9
+    21300052: Atlaschicken1_10
+    21300054: Atlaschicken1_11
+    21300056: Atlaschicken1_12
+    21300058: Atlaschicken1_13
+    21300060: Atlaschicken1_14
+    21300062: AtlasDuck_0
+    21300064: AtlasDuck_1
+    21300066: AtlasDuck_2
+    21300068: AtlasDuck_3
+    21300070: AtlasDuck_4
+    21300072: AtlasDuck_5
+    21300074: AtlasDuck_6
+    21300076: AtlasDuck_7
+    21300078: AtlasDuck_8
+    21300080: AtlasDuck_9
+    21300082: AtlasDuck_10
+    21300084: AtlasDuck_11
+    21300086: AtlasDuck_12
+    21300088: AtlasDuck_13
+    21300090: AtlasDuck_14
+    21300092: AtlasEagle_0
+    21300094: AtlasEagle_1
+    21300096: AtlasEagle_2
+    21300098: AtlasEagle_3
+    21300100: AtlasEagle_4
+    21300102: AtlasEagle_5
+    21300104: AtlasEagle_6
+    21300106: AtlasEagle_7
+    21300108: AtlasEagle_8
+    21300110: AtlasEagle_9
+    21300112: AtlasEagle_10
+    21300114: AtlasEagle_11
+    21300116: AtlasEagle_12
+    21300118: AtlasEagle_13
+    21300120: AtlasEagle_14
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 2
+    aniso: 4
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AtlasEagle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 937
+        width: 95
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 937
+        width: 141
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5845592, y: 0.4999988}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 874
+        width: 212
+        height: 62
+      alignment: 9
+      pivot: {x: 0.97622406, y: 1.4523059}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 163
+        height: 110
+      alignment: 9
+      pivot: {x: 0.45583853, y: 0.7384449}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_4
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 763
+        width: 118
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.56130296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 637
+        width: 189
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_6
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 637
+        width: 84
+        height: 74
+      alignment: 9
+      pivot: {x: 0.39127785, y: 0.15886049}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_7
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 488
+        width: 285
+        height: 172
+      alignment: 9
+      pivot: {x: 0.6077565, y: 1.4803619}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 458
+        width: 244
+        height: 178
+      alignment: 9
+      pivot: {x: 0.3813303, y: 0.39473972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_9
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 319
+        width: 435
+        height: 168
+      alignment: 9
+      pivot: {x: 0.72710145, y: 0.59124553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 284
+        height: 457
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.41427785}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_11
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 319
+        width: 101
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_12
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 319
+        width: 93
+        height: 52
+      alignment: 9
+      pivot: {x: 0.57929254, y: -0.07474987}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_13
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 0
+        width: 362
+        height: 318
+      alignment: 9
+      pivot: {x: 0.4759068, y: 0.46872154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AtlasEagle_14
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 367
+        height: 283
+      alignment: 9
+      pivot: {x: 0.5649743, y: 0.46438798}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
