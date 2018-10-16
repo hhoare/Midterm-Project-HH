@@ -211,9 +211,14 @@ public class HPlayerControl : MonoBehaviour {
 		}
 
 	}
-		
 
-	IEnumerator SitChangeOFF(){
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    IEnumerator SitChangeOFF(){
 		yield return new WaitForSeconds (0.5f);
 		isSitChangeON = false;
 	}

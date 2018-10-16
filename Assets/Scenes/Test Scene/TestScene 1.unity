@@ -425,6 +425,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8314b59588a035e48817a09db957da78, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &34729506 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1168894473454808, guid: 8314b59588a035e48817a09db957da78,
+    type: 2}
+  m_PrefabInternal: {fileID: 34729505}
+--- !u!58 &34729507
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34729506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3022523}
+  serializedVersion: 2
+  m_Radius: 0.43673706
 --- !u!1 &53325283
 GameObject:
   m_ObjectHideFlags: 0
