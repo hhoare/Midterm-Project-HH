@@ -140,6 +140,9 @@ public class PlayerControl : MonoBehaviour {
 			mAnimator.SetBool("IsDive", false);
 		}
 
+        ///////////////////// LEFT OFF HERE
+
+
 
 		if (Input.GetKey(KeyCode.LeftShift)) {
 			if (!Input.GetKey (KeyCode.LeftShift) && (Input.GetKey (KeyCode.RightArrow) || Input.GetKey (KeyCode.D))) {
