@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
         }
 
     }
