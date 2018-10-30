@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     private Collider2D groundedTrigger;
     [SerializeField]
     private PhysicsMaterial2D movingPhysicsMaterial, stoppingPhysicsMaterial;
-    
+
     private float horizontalInput;
     private float verticalInput;
 
@@ -25,27 +25,37 @@ public class PlayerMovement : MonoBehaviour {
     public static Animator mAnimator;
     private bool isAutoSitSpeed;
     private int intAutoTimer;
-
-
+    private bool isJumpKey;
+    private bool isSitChangeON;
 
     [SerializeField]
-    private float accelerationForce = 5;
+    private float walkAccelerationForce = 5;
     [SerializeField]
-    private float maxSpeed = 5;
+    private float walkMaxSpeed = 5;
+    [SerializeField]
+    private float runAccelerationForce = 7;
+    [SerializeField]
+    private float runMaxSpeed = 8;
+
+    private float currentAccelerationForce = 5;
+    private float currentMaxSpeed = 5;
+
+
     [SerializeField]
     private float jumpForce = 10;
 
     private bool isGrounded;
     private Collider2D[] groundedResults = new Collider2D[16];
 
+    private Component[] spriteRenderers;
 
     private Checkpoint currentCheckpoint;
 
     // Use this for initialization
-    void Start () {
-        modelTransform = GameObject.Find("Model").GetComponent<Transform>();
-
-        mAnimator = GameObject.Find("player").transform.Find("Model").transform.GetChild(0).gameObject.GetComponent<Animator>();
+    void Start() {
+        modelTransform = this.GetComponent<Transform>();
+        spriteRenderers = this.GetComponentsInChildren<SpriteRenderer>();
+        mAnimator = this.GetComponent<Animator>();
         mAnimator.SetBool("IsEat", false);
         mAnimator.SetBool("IsWait", true);
     }
@@ -58,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update () {
+    private void Update() {
 
         InputHandler();     // initializes input variables
         Jump();
@@ -73,6 +83,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if(isGrounded)
+            rigidBody2D.gravityScale = 1;
+
         UpdatePhysicsMaterial();
         Move();
     }
@@ -89,10 +102,33 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Move()     // Handles horizontal movement
     {
+        
+        if (Mathf.Abs(verticalInput) < 0)
+        {
+            AutoAnimationCancel();
+            isAutoSitSpeed = true;
+            if (!isSitChangeON)
+            {
+                StartCoroutine(SitChangeOFF());
+                isSitChangeON = true;
+                mAnimator.SetBool("IsSitdown", true);
+ 
+            }
+            currentAccelerationForce = runAccelerationForce;
+            currentMaxSpeed += runMaxSpeed;
+        }
+        else //     CURRENTLY DONT DIFFERENTIATE BETWEEN WALKING AND RUNNING FOR ANIMATION, ONLY RUNNING AND HEAD DOWN RUNNING
+        {
+            currentAccelerationForce = walkAccelerationForce;
+            currentMaxSpeed += walkMaxSpeed;
+        }
+        
 
-        rigidBody2D.AddForce(Vector2.right * horizontalInput * accelerationForce);
+       // Debug.Log("Horizontal Input: " + horizontalInput);
+
+        rigidBody2D.AddForce(Vector2.right * horizontalInput * currentAccelerationForce);
         Vector2 ClampedVelocity = rigidBody2D.velocity;
-        ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, 0, maxSpeed);
+        ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, -currentMaxSpeed, currentMaxSpeed);
         rigidBody2D.velocity = ClampedVelocity;
 
     }
@@ -103,7 +139,13 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isJumpKey = true;
 
+        }
+        else
+        {
+            isJumpKey = false;
+            rigidBody2D.gravityScale = 2;
         }
 
     }
@@ -112,10 +154,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (Mathf.Abs(horizontalInput) > 0)
         {
-            playerCollider.sharedMaterial = movingPhysicsMaterial;  
+            AutoAnimationCancel();
+            playerCollider.sharedMaterial = movingPhysicsMaterial;
+            mAnimator.SetBool("IsRun", true);
+            mAnimator.SetBool("IsWalk", false);
         }
         else
         {
+            mAnimator.SetBool("IsRun", false);
+            mAnimator.SetBool("IsWalk", false);
             playerCollider.sharedMaterial = stoppingPhysicsMaterial;
         }
     }
@@ -132,7 +179,20 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FlipPlayer()
     {
-
+        if (horizontalInput < 0)
+        {
+            foreach (SpriteRenderer sprite in spriteRenderers)
+            {
+                sprite.flipX = true;
+            }
+        }
+        else
+        {
+            foreach (SpriteRenderer sprite in spriteRenderers)
+            {
+                sprite.flipX = false;
+            }
+        }
     }
 
 
@@ -160,6 +220,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
 
+    IEnumerator SitChangeOFF()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isSitChangeON = false;
+    }
 
     private IEnumerator AutoAnimation()
     {
