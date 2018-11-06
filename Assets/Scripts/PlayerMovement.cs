@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,13 +52,40 @@ public class PlayerMovement : MonoBehaviour {
 
     private Checkpoint currentCheckpoint;
 
-    // Use this for initialization
+
+    private float modelScaleX;
+    private float modelScaleY;
+    private float modelScaleZ;
+
+    private float eatTimer = 20f;
+
+    private PlayerState playerState;
+
+
+    private enum PlayerState
+    {
+        Still,
+        Run,
+        Crouch,
+        CrouchRun,
+        Jump,
+        Falling,
+        Dash,
+        Glide
+    }
+
+
     void Start() {
         modelTransform = this.GetComponent<Transform>();
         spriteRenderers = this.GetComponentsInChildren<SpriteRenderer>();
         mAnimator = this.GetComponent<Animator>();
         mAnimator.SetBool("IsEat", false);
         mAnimator.SetBool("IsWait", true);
+
+        modelScaleX = modelTransform.localScale.x;
+        modelScaleY = modelTransform.localScale.y;
+        modelScaleZ = modelTransform.localScale.z;
+
     }
 
     private void InputHandler()
@@ -70,13 +98,46 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
 
+
+     //  AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
         Jump();
         CheckGrounded();
 
 
-        AnimationVariables();
+     //   AnimationVariables();
 
+
+
+    }
+
+    private void AnimationUpdate()
+    {
+        /*                  EATING THING, USE COROUTINES AND WAITFORSECONDS FUNCTION
+        if (horizontalInput == 0 && verticalInput == 0)
+        {
+
+                eatTimer = 20f;
+                mAnimator.SetBool("IsEat", true);
+                eatTimer -= Time.deltaTime;
+                if (eatTimer <= 0.0f)
+                {
+                    mAnimator.SetBool("IsEat", false);
+                    while (eatTimer != 20f)
+                    {
+                        eatTimer++;
+                    }
+                }
+            
+        }
+        */
+
+        if (playerState == PlayerState.Run)
+        {
+            mAnimator.SetBool("IsWalk", false);
+            mAnimator.SetBool("IsSitdown", false);
+            mAnimator.SetBool("IsRun", false);
+        }
 
 
     }
@@ -90,10 +151,7 @@ public class PlayerMovement : MonoBehaviour {
         Move();
     }
 
-    private enum PlayerState
-    {
 
-    }
 
     private void CheckGrounded()
     {
@@ -105,15 +163,7 @@ public class PlayerMovement : MonoBehaviour {
         
         if (Mathf.Abs(verticalInput) < 0)
         {
-            AutoAnimationCancel();
-            isAutoSitSpeed = true;
-            if (!isSitChangeON)
-            {
-                StartCoroutine(SitChangeOFF());
-                isSitChangeON = true;
-                mAnimator.SetBool("IsSitdown", true);
- 
-            }
+
             currentAccelerationForce = runAccelerationForce;
             currentMaxSpeed += runMaxSpeed;
         }
@@ -131,6 +181,19 @@ public class PlayerMovement : MonoBehaviour {
         ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, -currentMaxSpeed, currentMaxSpeed);
         rigidBody2D.velocity = ClampedVelocity;
 
+        playerState = PlayerState.Run;
+
+        if (horizontalInput > 0)
+        {
+           // modelTransform.rotation = Quaternion.Euler(0, 0, 0);
+            modelTransform.localScale = new Vector3(modelScaleX, modelScaleY, modelScaleZ);
+        }
+        else if(horizontalInput < 0)
+        {
+           // modelTransform.rotation = Quaternion.Euler(0, 180f, 180f);
+            modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
+
+        }
     }
 
 
@@ -139,12 +202,9 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isJumpKey = true;
-
         }
         else
         {
-            isJumpKey = false;
             rigidBody2D.gravityScale = 2;
         }
 
@@ -154,15 +214,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (Mathf.Abs(horizontalInput) > 0)
         {
-            AutoAnimationCancel();
             playerCollider.sharedMaterial = movingPhysicsMaterial;
-            mAnimator.SetBool("IsRun", true);
-            mAnimator.SetBool("IsWalk", false);
+
         }
         else
         {
-            mAnimator.SetBool("IsRun", false);
-            mAnimator.SetBool("IsWalk", false);
+
             playerCollider.sharedMaterial = stoppingPhysicsMaterial;
         }
     }
@@ -220,92 +277,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 
-    IEnumerator SitChangeOFF()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isSitChangeON = false;
-    }
-
-    private IEnumerator AutoAnimation()
-    {
-        yield return new WaitForSeconds(1.3f);
-        if (!isAutoSitSpeed && !mAnimator.GetBool("IsWalk") && !mAnimator.GetBool("IsRun") && !mAnimator.GetBool("IsJumpUp") && !mAnimator.GetBool("IsJumpDown"))
-        {
-            intAutoTimer++;
-            if (intAutoTimer >= 10)
-            {
-                intAutoTimer = 1;
-                mAnimator.SetBool("IsEat", true);
-                mAnimator.SetBool("IsWait", false);
-            }
-            else if (intAutoTimer >= 7)
-            {
-                mAnimator.SetBool("IsEat", false);
-                mAnimator.SetBool("IsWait", true);
-            }
-            else if (intAutoTimer >= 5)
-            {
-                mAnimator.SetBool("IsEat", true);
-                mAnimator.SetBool("IsWait", false);
-            }
-            else if (intAutoTimer >= 2)
-            {
-                mAnimator.SetBool("IsEat", false);
-                mAnimator.SetBool("IsWait", true);
-            }
-        }
-        else
-        {
-            AutoAnimationCancel();
-        }
-        StartCoroutine(AutoAnimation());
-    }
-    private void AutoAnimationCancel()
-    {
-        mAnimator.SetBool("IsEat", false);
-        mAnimator.SetBool("IsWait", false);
-        intAutoTimer = 0;
-    }
-
-    private void AnimationVariables()
-    {
-
-        if (rigidBody2D.velocity.y > 0.1f)
-        {
-
-            if (isAutoSitSpeed)
-            {
-                mAnimator.SetBool("IsDive", true);
-            }
-            else
-            {
-                mAnimator.SetBool("IsDive", false);
-                mAnimator.SetBool("IsJumpUp", true);
-                mAnimator.SetBool("IsJumpDown", false);
-            }
-        }
-        else if (rigidBody2D.velocity.y < -0.1f)
-        {
-
-            if (isAutoSitSpeed)
-            {
-                mAnimator.SetBool("IsDive", true);
-            }
-            else
-            {
-                mAnimator.SetBool("IsDive", false);
-                mAnimator.SetBool("IsJumpUp", false);
-                mAnimator.SetBool("IsJumpDown", true);
-            }
-        }
-        else
-        {
-            mAnimator.SetBool("IsJumpUp", false);
-            mAnimator.SetBool("IsJumpDown", false);
-            mAnimator.SetBool("IsDive", false);
-        }
-    }
-
+ 
 
 
 

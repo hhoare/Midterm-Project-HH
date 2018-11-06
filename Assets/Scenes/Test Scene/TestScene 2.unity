@@ -2194,7 +2194,7 @@ MonoBehaviour:
   walkMaxSpeed: 20
   runAccelerationForce: 20
   runMaxSpeed: 20
-  jumpForce: 10
+  jumpForce: 12
 --- !u!50 &879545841
 Rigidbody2D:
   serializedVersion: 4
