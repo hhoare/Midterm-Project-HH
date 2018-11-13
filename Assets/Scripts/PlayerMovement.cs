@@ -99,17 +99,25 @@ public class PlayerMovement : MonoBehaviour {
     private void Update() {
 
 
-     //  AnimationUpdate();  // checks player state and updates anims
+        AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
         Jump();
         CheckGrounded();
-
-
-     //   AnimationVariables();
-
-
-
+     
     }
+
+    private void FixedUpdate()
+    {
+        if (isGrounded)
+            rigidBody2D.gravityScale = 1;
+        else
+            mAnimator.SetBool("isGrounded", false);
+
+        UpdatePhysicsMaterial();
+        Move();
+    }
+
+
 
     private void AnimationUpdate()
     {
@@ -134,28 +142,27 @@ public class PlayerMovement : MonoBehaviour {
 
         if (playerState == PlayerState.Run)
         {
-            mAnimator.SetBool("IsWalk", false);
-            mAnimator.SetBool("IsSitdown", false);
-            mAnimator.SetBool("IsRun", false);
+          mAnimator.SetBool("isRunning", true);
+        }
+        if (playerState == PlayerState.Still)
+        {
+            mAnimator.SetBool("isRunning", false);
+        }
+        if (playerState == PlayerState.Jump)
+        {
+            mAnimator.SetBool("isJumping", true);
         }
 
-
     }
 
-    private void FixedUpdate()
-    {
-        if(isGrounded)
-            rigidBody2D.gravityScale = 1;
 
-        UpdatePhysicsMaterial();
-        Move();
-    }
 
 
 
     private void CheckGrounded()
     {
         isGrounded = groundedTrigger.OverlapCollider(groundContactFilter, groundedResults) > 0;
+        mAnimator.SetBool("isGrounded", true);
     }
 
     private void Move()     // Handles horizontal movement
@@ -181,19 +188,33 @@ public class PlayerMovement : MonoBehaviour {
         ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, -currentMaxSpeed, currentMaxSpeed);
         rigidBody2D.velocity = ClampedVelocity;
 
-        playerState = PlayerState.Run;
 
         if (horizontalInput > 0)
         {
-           // modelTransform.rotation = Quaternion.Euler(0, 0, 0);
+            // modelTransform.rotation = Quaternion.Euler(0, 0, 0);
+            playerState = PlayerState.Run;
+          //  mAnimator.SetBool("isRunning", true);
+
             modelTransform.localScale = new Vector3(modelScaleX, modelScaleY, modelScaleZ);
         }
         else if(horizontalInput < 0)
         {
-           // modelTransform.rotation = Quaternion.Euler(0, 180f, 180f);
+            // modelTransform.rotation = Quaternion.Euler(0, 180f, 180f);
+            playerState = PlayerState.Run;
+           // mAnimator.SetBool("isRunning", true);
+
             modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
 
         }
+
+
+        if (horizontalInput == 0)
+        {
+            playerState = PlayerState.Still;
+           // mAnimator.SetBool("isRunning", false);
+
+        }
+
     }
 
 
@@ -202,10 +223,14 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidBody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            playerState = PlayerState.Jump;
+            mAnimator.SetBool("isJumping", true);
         }
         else
         {
             rigidBody2D.gravityScale = 2;
+            mAnimator.SetBool("isJumping", false);
+
         }
 
     }
