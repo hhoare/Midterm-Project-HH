@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private Component[] spriteRenderers;
 
-    private Checkpoint currentCheckpoint;
+    public Checkpoint currentCheckpoint = null;
 
 
     private float modelScaleX;
@@ -280,7 +280,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public void SetCurrentCheckpoint(Checkpoint newCheckpoint)
     {
-        currentCheckpoint.SetIsActivated(false);
+        if(currentCheckpoint!=null)
+            currentCheckpoint.SetIsActivated(false);
+
         currentCheckpoint = newCheckpoint;
         currentCheckpoint.SetIsActivated(true);
 
