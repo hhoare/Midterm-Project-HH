@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float runMaxSpeed = 8;
 
+    [SerializeField]
+    private float maxAccelerationForce = 5;
+
     private float currentAccelerationForce = 5;
     private float currentMaxSpeed = 5;
 
@@ -349,7 +352,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 
+    void ScreenBottomDie()
+    {
+        if (this.transform.position.y < 0) {
 
+            Respawn();
+        }
+
+    }
  
 
 
