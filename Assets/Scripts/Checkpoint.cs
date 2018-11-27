@@ -7,6 +7,13 @@ public class Checkpoint : MonoBehaviour {
     private bool isActivated;
 
 
+    private void Update()
+    {
+        if(isActivated)
+        transform.Rotate(new Vector3(0f, 5f, 0f));
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

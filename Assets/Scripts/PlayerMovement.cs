@@ -79,8 +79,10 @@ public class PlayerMovement : MonoBehaviour {
         modelTransform = this.GetComponent<Transform>();
         spriteRenderers = this.GetComponentsInChildren<SpriteRenderer>();
         mAnimator = this.GetComponent<Animator>();
-        mAnimator.SetBool("IsEat", false);
-        mAnimator.SetBool("IsWait", true);
+        // mAnimator.SetBool("IsEat", false);
+        // mAnimator.SetBool("IsWait", true);
+
+        modelTransform.position = new Vector3(modelTransform.position.x, modelTransform.position.y, -1);
 
         modelScaleX = modelTransform.localScale.x;
         modelScaleY = modelTransform.localScale.y;
@@ -101,8 +103,13 @@ public class PlayerMovement : MonoBehaviour {
 
         AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
-        Jump();
         CheckGrounded();
+        Jump();
+        Dash();
+        if (!isGrounded) {
+          //  playerState = PlayerState.Jump;
+        }
+      //  Debug.Log(playerState);
      
     }
 
@@ -115,6 +122,8 @@ public class PlayerMovement : MonoBehaviour {
 
         UpdatePhysicsMaterial();
         Move();
+
+
     }
 
 
@@ -153,6 +162,11 @@ public class PlayerMovement : MonoBehaviour {
             mAnimator.SetBool("isJumping", true);
         }
 
+        if (playerState == PlayerState.Dash)
+        {
+            mAnimator.SetBool("isDashing", true);
+        }
+
     }
 
 
@@ -163,6 +177,10 @@ public class PlayerMovement : MonoBehaviour {
     {
         isGrounded = groundedTrigger.OverlapCollider(groundContactFilter, groundedResults) > 0;
         mAnimator.SetBool("isGrounded", true);
+
+        if (!isGrounded) {
+       //     playerState = PlayerState.Jump;
+        }
     }
 
     private void Move()     // Handles horizontal movement
@@ -208,11 +226,16 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 
-        if (horizontalInput == 0)
+        if (horizontalInput == 0 && isGrounded)
         {
             playerState = PlayerState.Still;
            // mAnimator.SetBool("isRunning", false);
 
+        }
+
+        if (!isGrounded && playerState != PlayerState.Dash)
+        {
+            playerState = PlayerState.Jump;
         }
 
     }
@@ -251,7 +274,25 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Dash()
     {
+        if (playerState==PlayerState.Jump)
+      {
+            if (Input.GetButtonDown("DashRight"))
+            {
+                rigidBody2D.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
+                modelTransform.localScale = new Vector3(modelScaleX, modelScaleY, modelScaleZ);
 
+                playerState = PlayerState.Dash;
+               // Debug.Log("Dashing");
+            }
+
+         if (Input.GetButtonDown("DashLeft") )
+        {
+            rigidBody2D.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
+            modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
+                playerState = PlayerState.Dash;
+             //   Debug.Log("Dashing");
+        }
+      }
     }
 
     private void Glide()
@@ -290,6 +331,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Respawn()
     {
+
+        FoodCounter.reset();
+
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -297,9 +341,11 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             rigidBody2D.velocity = Vector2.zero;
-            transform.position = currentCheckpoint.transform.position;
+            transform.position = new Vector3(currentCheckpoint.transform.position.x, currentCheckpoint.transform.position.y, -1);
             
         }
+
+
     }
 
 
