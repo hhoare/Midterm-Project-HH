@@ -337,9 +337,13 @@ public class PlayerMovement : MonoBehaviour {
 
         FoodCounter.reset();
 
+
+      //  this.transform.Rotate(new Vector3(0f, 0f, 3f));
+
+
         if (currentCheckpoint == null)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(Pause());
         }
         else
         {
@@ -347,6 +351,18 @@ public class PlayerMovement : MonoBehaviour {
             transform.position = new Vector3(currentCheckpoint.transform.position.x, currentCheckpoint.transform.position.y, -1);
             
         }
+
+
+    }
+
+    public IEnumerator Pause() {
+        Debug.Log("PAUSING");
+        for (int i = 0; i < 10000; i++)
+        {
+            this.transform.Rotate(new Vector3(0f, 0f, 3f));
+        }
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
 
     }
