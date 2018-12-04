@@ -106,7 +106,8 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-       // Debug.Log(currentAccelerationForce);
+        // Debug.Log(currentAccelerationForce);
+       // mAnimator.SetBool("Dashing", true);
 
         AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
@@ -127,6 +128,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             rigidBody2D.gravityScale = 1;
             currentAccelerationForce = 15;
+            mAnimator.SetBool("Dashing", false);
 
         }
         else
@@ -171,6 +173,9 @@ public class PlayerMovement : MonoBehaviour {
         if (playerState == PlayerState.Still)
         {
             mAnimator.SetBool("isRunning", false);
+            mAnimator.SetBool("Dashing", false);
+            mAnimator.SetBool("isJumping", false);
+
         }
         if (playerState == PlayerState.Jump)
         {
@@ -181,7 +186,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (playerState == PlayerState.Dash)
         {
-            mAnimator.SetBool("isDashing", true);
+            mAnimator.SetBool("Dashing", true);
         }
 
     }
@@ -298,6 +303,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 rigidBody2D.AddForce(Vector2.right * 5f, ForceMode2D.Impulse);
                 modelTransform.localScale = new Vector3(modelScaleX, modelScaleY, modelScaleZ);
+                mAnimator.SetBool("Dashing", true);
 
                 playerState = PlayerState.Dash;
                // Debug.Log("Dashing");
@@ -307,6 +313,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             rigidBody2D.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
             modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
+                mAnimator.SetBool("Dashing", true);
+
                 playerState = PlayerState.Dash;
              //   Debug.Log("Dashing");
         }
