@@ -5,19 +5,28 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour {
 
     private bool isActivated;
+    private AudioSource checkpointSoundFX;
 
+
+    private void Start()
+    {
+        checkpointSoundFX = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
-        if(isActivated)
-        transform.Rotate(new Vector3(0f, 5f, 0f));
+        if (isActivated)
+        {
+            transform.Rotate(new Vector3(0f, 5f, 0f));
+        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isActivated)
         {
+            checkpointSoundFX.PlayOneShot(checkpointSoundFX.clip, 1f);
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
             player.SetCurrentCheckpoint(this);
 

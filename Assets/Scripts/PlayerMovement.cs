@@ -64,6 +64,9 @@ public class PlayerMovement : MonoBehaviour {
 
     private PlayerState playerState;
 
+    private AudioSource deathSoundFX;
+
+    private bool dying = false;
 
     private enum PlayerState
     {
@@ -79,6 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     void Start() {
+        dying = false;
         modelTransform = this.GetComponent<Transform>();
         spriteRenderers = this.GetComponentsInChildren<SpriteRenderer>();
         mAnimator = this.GetComponent<Animator>();
@@ -90,7 +94,7 @@ public class PlayerMovement : MonoBehaviour {
         modelScaleX = modelTransform.localScale.x;
         modelScaleY = modelTransform.localScale.y;
         modelScaleZ = modelTransform.localScale.z;
-
+        deathSoundFX = GetComponent<AudioSource>();
     }
 
     private void InputHandler()
@@ -102,16 +106,17 @@ public class PlayerMovement : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-
+       // Debug.Log(currentAccelerationForce);
 
         AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
         CheckGrounded();
         Jump();
         Dash();
-        if (!isGrounded) {
-          //  playerState = PlayerState.Jump;
-        }
+        ScreenBottomDie();
+      //  if (dying) {
+         //   this.transform.Rotate(new Vector3(10f, 10f, 10f));
+      //  }
       //  Debug.Log(playerState);
      
     }
@@ -119,10 +124,17 @@ public class PlayerMovement : MonoBehaviour {
     private void FixedUpdate()
     {
         if (isGrounded)
+        {
             rigidBody2D.gravityScale = 1;
-        else
-            mAnimator.SetBool("isGrounded", false);
+            currentAccelerationForce = 15;
 
+        }
+        else
+        {
+            mAnimator.SetBool("isGrounded", false);
+            currentAccelerationForce = 12;
+
+        }
         UpdatePhysicsMaterial();
         Move();
 
@@ -163,6 +175,8 @@ public class PlayerMovement : MonoBehaviour {
         if (playerState == PlayerState.Jump)
         {
             mAnimator.SetBool("isJumping", true);
+         //   currentAccelerationForce = 1;
+
         }
 
         if (playerState == PlayerState.Dash)
@@ -192,23 +206,24 @@ public class PlayerMovement : MonoBehaviour {
         if (Mathf.Abs(verticalInput) < 0)
         {
 
-            currentAccelerationForce = runAccelerationForce;
+         //   currentAccelerationForce = runAccelerationForce;
             currentMaxSpeed += runMaxSpeed;
         }
         else //     CURRENTLY DONT DIFFERENTIATE BETWEEN WALKING AND RUNNING FOR ANIMATION, ONLY RUNNING AND HEAD DOWN RUNNING
         {
-            currentAccelerationForce = walkAccelerationForce;
+       //     currentAccelerationForce = walkAccelerationForce;
             currentMaxSpeed += walkMaxSpeed;
         }
-        
 
-       // Debug.Log("Horizontal Input: " + horizontalInput);
 
-        rigidBody2D.AddForce(Vector2.right * horizontalInput * currentAccelerationForce);
-        Vector2 ClampedVelocity = rigidBody2D.velocity;
-        ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, -currentMaxSpeed, currentMaxSpeed);
-        rigidBody2D.velocity = ClampedVelocity;
-
+        // Debug.Log("Horizontal Input: " + horizontalInput);
+        if (isGrounded)
+        {
+            rigidBody2D.AddForce(Vector2.right * horizontalInput * currentAccelerationForce);
+            Vector2 ClampedVelocity = rigidBody2D.velocity;
+            ClampedVelocity.x = Mathf.Clamp(rigidBody2D.velocity.x, -currentMaxSpeed, currentMaxSpeed);
+            rigidBody2D.velocity = ClampedVelocity;
+        }
 
         if (horizontalInput > 0)
         {
@@ -334,11 +349,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Respawn()
     {
-
+        dying = false;
         FoodCounter.reset();
+        deathSoundFX.PlayOneShot(deathSoundFX.clip, 1f);
 
 
-      //  this.transform.Rotate(new Vector3(0f, 0f, 3f));
+        //  this.transform.Rotate(new Vector3(0f, 0f, 3f));
 
 
         if (currentCheckpoint == null)
@@ -357,11 +373,10 @@ public class PlayerMovement : MonoBehaviour {
 
     public IEnumerator Pause() {
         Debug.Log("PAUSING");
-        for (int i = 0; i < 10000; i++)
-        {
-            this.transform.Rotate(new Vector3(0f, 0f, 3f));
-        }
-        yield return new WaitForSeconds(3);
+
+        this.transform.localScale = new Vector3(0.7f,-0.7f,0.7f);
+        
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
 
@@ -370,7 +385,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void ScreenBottomDie()
     {
-        if (this.transform.position.y < 0) {
+        if (this.transform.position.y < -10) {
 
             Respawn();
         }

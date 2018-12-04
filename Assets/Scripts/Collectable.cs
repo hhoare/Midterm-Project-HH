@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour {
 
+    private AudioSource foodSoundFX;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         this.GetComponent<SpriteRenderer>().enabled = true;
         this.GetComponent<PolygonCollider2D>().enabled = true;
+        foodSoundFX = GetComponent<AudioSource>();
 
     }
 
@@ -25,7 +27,10 @@ public class Collectable : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            foodSoundFX.PlayOneShot(foodSoundFX.clip, 1f);
+
+          //  StartCoroutine(pause());
+          //  Destroy(this.gameObject);
             this.GetComponent<SpriteRenderer>().enabled = false;
             this.GetComponent<PolygonCollider2D>().enabled = false;
 
@@ -38,5 +43,6 @@ public class Collectable : MonoBehaviour {
         this.GetComponent<SpriteRenderer>().enabled = true;
         this.GetComponent<PolygonCollider2D>().enabled = true;
     }
+
 
 }
