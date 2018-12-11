@@ -16,7 +16,7 @@ public class Portal : MonoBehaviour {
         if (collision.CompareTag("Player"))
         {
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
-            SceneManager.LoadScene("EndScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
