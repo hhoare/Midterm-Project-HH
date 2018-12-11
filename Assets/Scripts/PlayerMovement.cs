@@ -107,7 +107,16 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         // Debug.Log(currentAccelerationForce);
-       // mAnimator.SetBool("Dashing", true);
+        // mAnimator.SetBool("Dashing", true);
+
+        if (playerState == PlayerState.Dash)
+        {
+            rigidBody2D.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+        else {
+            rigidBody2D.constraints = RigidbodyConstraints2D.None;
+            rigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
 
         AnimationUpdate();  // checks player state and updates anims
         InputHandler();     // initializes input variables
@@ -312,7 +321,8 @@ public class PlayerMovement : MonoBehaviour {
          if (Input.GetButtonDown("DashLeft") )
         {
             rigidBody2D.AddForce(Vector2.left * 5f, ForceMode2D.Impulse);
-            modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
+
+                modelTransform.localScale = new Vector3(-modelScaleX, modelScaleY, modelScaleZ);
                 mAnimator.SetBool("Dashing", true);
 
                 playerState = PlayerState.Dash;
