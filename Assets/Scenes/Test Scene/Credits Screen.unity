@@ -843,6 +843,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.8887662
       objectReference: {fileID: 0}
+    - target: {fileID: 114717807782128502, guid: bd425905f9c9d084fb8d76f0cbc2b2b8,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Title Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 114682087701088996, guid: bd425905f9c9d084fb8d76f0cbc2b2b8,
+        type: 2}
+      propertyPath: m_Text
+      value: Main Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd425905f9c9d084fb8d76f0cbc2b2b8, type: 2}
   m_IsPrefabParent: 0
